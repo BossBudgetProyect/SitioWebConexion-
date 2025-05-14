@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="img/Logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="dist/output.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <title>Registro de Ingresos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    .formulario-ingresos, .formulario-dp {
+      display: block;
+    }
+
+    .formulario-recordatorio {
+      display: none;
+    }
+  </style>
+</head>
+<body class="flex justify-center items-center min-h-screen">
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover -z-10">
+        <source src="video/videoFondo.mp4" type="video/mp4">
+    </video>
+
+  <div class="bg-gray-200 p-6 rounded-xl shadow-md max-w-md w-full mx-4">
+    <h2 class="text-2xl text-center font-bold text-gray-800 mb-4">Registro de Ingresos</h2>
+
+    <!-- Formulario de ingresos -->
+    <div id="formularioIngresos" class="formulario-ingresos">
+      <!-- Tipo de crédito -->
+      <label class="block text-sm font-semibold mb-1">Elige tu tipo de ingreso</label>
+      <select id="tipoIngreso" class="w-full mb-2 p-2 border border-gray-300 rounded-md">
+        <option>Efectivo</option>
+        <option>Transacción</option>
+        <option>Otro</option>
+      </select>
+      <input id="otroIngreso" type="text" placeholder="Si eligió otro tipo de crédito, escríbelo..." class="w-full mb-4 p-2 border border-gray-300 rounded-md hidden" />
+
+      <!-- Monto del ingreso -->
+      <label for="montoIngreso" class="block text-sm font-semibold mb-1 mt-4">Monto del ingreso</label>
+      <input type="number" id="montoIngreso" placeholder="Ingresa el monto" class="w-full mb-4 p-2 border border-gray-300 rounded-md" min="0" step="0.01" required />
+    </div>
+
+    <div id="detallepresupuesto" class="formulario-dp">
+      <!-- Detalle de presupuesto -->
+      <label class="block text-sm font-semibold mb-1">Detalle de tu presupuesto </label>
+      <select id="detallep" class="w-full mb-2 p-2 border border-gray-300 rounded-md">
+        <option>Efectivo</option>
+        <option>Transacción</option>
+        <option>Otro</option>
+      </select>
+      <input id="OtroDetalle" type="text" placeholder="Si eligió otro detalle de presupuesto, escríbelo..." class="w-full mb-4 p-2 border border-gray-300 rounded-md hidden" />
+    </div>
+
+    <!-- Botones -->
+    <div class="flex justify-between gap-4">
+      <a href="principal.html" class="bg-black text-white text-center py-2 rounded-full w-full hover:bg-yellow-600 transition">
+        Registrar
+      </a>
+      <button id="btnRegistrarRecordatorio" type="button" class="bg-fuchsia-800 text-white py-2 rounded-full w-full hover:bg-yellow-600 transition" onclick="mostrarFormularioRecordatorio()">
+        Registrar y Crear Recordatorio
+      </button>
+    </div>
+
+    <!-- Formulario que se despliega con las opciones de recordatorio -->
+    <div id="formularioRecordatorio" class="formulario-recordatorio mt-6">
+      <!-- Contenido del formulario de recordatorio -->
+    </div>
+  </div>
+
+<script>
+  // Manejar la visibilidad de los campos "Otro" de ambos formularios
+  function manejarTipoIngreso(selectId, inputId) {
+    const select = document.getElementById(selectId);
+    const inputOtroCredito = document.getElementById(inputId);
+
+    select.addEventListener('change', function() {
+      if (select.value === "Otro") {
+        inputOtroCredito.classList.remove('hidden');
+      } else {
+        inputOtroCredito.classList.add('hidden');
+      }
+    });
+  }
+
+  // Llamamos a la función para ambos formularios
+  manejarTipoIngreso('tipoIngreso', 'otroIngreso');
+  manejarTipoIngreso('detallep', 'OtroDetalle');
+
+  function mostrarFormularioRecordatorio() {
+    const formularioRecordatorio = document.getElementById('formularioRecordatorio');
+    const formularioIngresos = document.getElementById('formularioIngresos');
+
+    formularioIngresos.style.display = 'none';
+    formularioRecordatorio.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

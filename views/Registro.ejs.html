@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+
+  <link rel="icon" href="img/Logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen bg-[url('img/FondoRegistro.png')] bg-cover bg-center pt-16">
+
+<form action="/registrar" method="post" enctype="multipart/form-data" class="bg-purple-100/80 backdrop-blur-lg p-10 rounded-3xl shadow-lg w-full max-w-5xl mx-4 border border-fuchsia-800 mt-2 mb-16">
+  <h2 class="text-5xl font-bold mb-4 text-center font-bebas text-fuchsia-700">Registro</h2>
+  <p class="text-base font-semibold text-center font-bebas text-gray-700">Aquí podrás registrarte y personalizar tu perfil</p>
+  <p class="text-sm text-center font-bebas text-gray-600">Esta información se mostrará públicamente, así que ten cuidado con lo que compartes.</p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+    <div class="space-y-6">
+      <div>
+        <label for="nom" class="block font-bold font-bebas mb-1">Nombres</label>
+        <input type="text" name="nom" id="nom" placeholder="Juan Carlos" required
+          class="w-full px-4 py-2 rounded-md border border-yellow-600 bg-white text-gray-900 max-w-md">
+      </div>
+
+      <div>
+        <label for="apell" class="block font-bold font-bebas mb-1">Apellidos</label>
+        <input type="text" name="apell" id="apell" placeholder="Pérez Gómez" required
+          class="w-full px-4 py-2 rounded-md border border-yellow-600 bg-white text-gray-900 max-w-md">
+      </div>
+
+      <div>
+		  <label for="username" class="block font-bold font-bebas mb-1">Nombre de usuario</label>
+		  <input type="text" name="username" id="username" placeholder="janesmith123" required
+			class="w-full px-4 py-2 rounded-md border border-yellow-600 bg-white text-gray-900 max-w-md">
+		</div>
+
+		<div>
+		  <label for="email" class="block font-bold font-bebas mb-1">Correo electrónico</label>
+		  <input type="email" name="email" id="email" placeholder="ejemplo@tucorreo.com" required
+			class="w-full px-4 py-2 rounded-md border border-yellow-600 bg-white text-gray-900 max-w-md">
+		</div>
+
+
+
+      <div>
+        <label for="pass" class="block font-bold font-bebas mb-1">Contraseña</label>
+        <input type="password" name="pass" id="pass" placeholder="********" required
+          class="w-full px-4 py-2 rounded-md border border-yellow-600 bg-white text-gray-900 max-w-md">
+      </div>
+    </div>
+	
+	
+	
+	<!-- Foto de perfil -->
+    <div class="flex flex-col items-center justify-center gap-6">
+	  <label for="foto" class="block font-bold font-bebas mb-1">Foto de perfil</label>
+	  <div class="border-2 border-fuchsia-600 bg-white p-4 rounded-xl shadow-lg w-full max-w-xs flex flex-col items-center justify-center gap-3 transition-all duration-300">
+		<img id="preview" alt="Vista previa" class="w-auto max-w-full max-h-60 object-contain border border-yellow-500 p-1 rounded-md hidden" />
+		
+		<svg id="default-icon" xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+		  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.121 17.804A9 9 0 0112 3a9 9 0 016.879 14.804M12 7a3 3 0 110 6 3 3 0 010-6zm0 12a9 9 0 01-7.5-4.5" />
+		</svg>
+
+		<input type="file" name="foto" id="foto" accept="image/*" class="hidden" onchange="previewImage(event)">
+		
+		<button type="button" onclick="document.getElementById('foto').click()" class="bg-fuchsia-700 text-white hover:bg-yellow-600 hover:text-black font-bebas px-4 py-1 rounded-lg transition-all duration-300 text-sm shadow-sm">
+		  Subir imagen
+		</button>
+
+		<button type="button" onclick="eliminarFoto()" id="btnEliminar" class="bg-red-500 text-white font-bebas px-3 py-1 rounded-md hover:bg-red-700 transition hidden text-sm shadow-sm">
+		  Quitar imagen
+		</button>
+
+		<p id="tipotexto" class="text-xs text-gray-600 font-bebas text-center">Solo imágenes (.jpg, .png, etc.)</p>
+	  </div>
+		  <!-- Campo Profesión -->
+	  <div class="w-full max-w-xs">
+		<label for="prof" class="block font-bold font-bebas mb-1">Profesión</label>
+		<input type="text" name="prof" id="prof" placeholder="Ej. Ingeniero de software"
+		  class="w-full px-4 py-2 rounded-md border border-yellow-600 bg-white text-gray-900">
+	  </div>
+
+	  <!-- Campo Expectativas -->
+	  <div class="w-full max-w-xs">
+		<label for="expec" class="block font-bold font-bebas mb-1">Expectativas</label>
+		<textarea name="expec" id="expec" rows="4" placeholder="Cuéntanos qué esperas lograr..."
+		  class="w-full px-4 py-2 rounded-md border border-yellow-600 bg-white text-gray-900 resize-none"></textarea>
+	  </div>
+	</div>
+	
+	</div>
+		<!-- Notificaciones -->
+	<fieldset class="mt-10">
+	  <legend class="font-bold font-bebas text-lg mb-2 text-gray-800">Notificaciones</legend>
+	  <p class="text-sm font-bebas text-gray-700 mb-4">Elige la intensidad de las notificaciones:</p>
+
+	  <div class="flex flex-col md:flex-row gap-4">
+		<!-- Básico -->
+		<label class="group relative flex-1 cursor-pointer">
+		  <input type="radio" name="notificaciones" value="basico" class="peer hidden">
+		  <div class="border-2 rounded-xl p-4 text-center transition-all duration-300 bg-white border-green-300 
+					  peer-checked:bg-green-50 peer-checked:shadow-lg peer-checked:border-green-500 hover:scale-[1.02] hover:shadow-md">
+			<div class="text-lg font-bebas text-green-600 flex justify-center items-center gap-2 before:content-[''] before:w-3 before:h-3 before:rounded-full before:bg-green-600">
+			  Básico
+			</div>
+			<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-xs px-3 py-2 text-xs text-white bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+			  Recibirás una notificación al inicio de cada mes.
+			</div>
+		  </div>
+		</label>
+
+		<!-- Medio -->
+		<label class="group relative flex-1 cursor-pointer">
+		  <input type="radio" name="notificaciones" value="medio" class="peer hidden">
+		  <div class="border-2 rounded-xl p-4 text-center transition-all duration-300 bg-white border-yellow-300 
+					  peer-checked:bg-yellow-50 peer-checked:shadow-lg peer-checked:border-yellow-500 hover:scale-[1.02] hover:shadow-md">
+			<div class="text-lg font-bebas text-yellow-600 flex justify-center items-center gap-2 before:content-[''] before:w-3 before:h-3 before:rounded-full before:bg-yellow-500">
+			  Medio
+			</div>
+			<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-xs px-3 py-2 text-xs text-white bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+			  Inicio de mes + recordatorio un día antes del pago.
+			</div>
+		  </div>
+		</label>
+
+		<!-- Intenso -->
+		<label class="group relative flex-1 cursor-pointer">
+		  <input type="radio" name="notificaciones" value="intenso" class="peer hidden">
+		  <div class="border-2 rounded-xl p-4 text-center transition-all duration-300 bg-white border-red-300 
+					  peer-checked:bg-red-50 peer-checked:shadow-lg peer-checked:border-red-500 hover:scale-[1.02] hover:shadow-md">
+			<div class="text-lg font-bebas text-red-600 flex justify-center items-center gap-2 before:content-[''] before:w-3 before:h-3 before:rounded-full before:bg-red-600">
+			  Intenso
+			</div>
+			<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-xs px-3 py-2 text-xs text-white bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+			  Inicio de mes, recordatorios semanales, 3 días y 1 día antes del pago.
+			</div>
+		  </div>
+		</label>
+	  </div>
+	</fieldset>
+
+
+
+  <div class="flex justify-end gap-4 mt-10">
+    <a href="index.html" class="text-lg font-semibold font-bebas px-5 py-2 border border-gray-400 rounded-lg text-gray-700 hover:text-white hover:bg-red-500 transition-all duration-300">Cancelar</a>
+    <button type="submit" class="bg-fuchsia-700 hover:bg-yellow-600 text-white hover:text-black px-6 py-2 rounded-lg font-bebas text-lg transition-all duration-300 shadow-md">Guardar</button>
+  </div>
+</form>
+
+<script>
+  function previewImage(event) {
+    const input = event.target;
+    const preview = document.getElementById('preview');
+    const icon = document.getElementById('default-icon');
+    const tipoTexto = document.getElementById('tipotexto');
+    const btnEliminar = document.getElementById('btnEliminar');
+
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+        preview.classList.remove('hidden');
+        icon.classList.add('hidden');
+        tipoTexto.classList.add('hidden');
+        btnEliminar.classList.remove('hidden');
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function eliminarFoto() {
+    const input = document.getElementById('foto');
+    const preview = document.getElementById('preview');
+    const icon = document.getElementById('default-icon');
+    const tipoTexto = document.getElementById('tipotexto');
+    const btnEliminar = document.getElementById('btnEliminar');
+
+    input.value = '';
+    preview.src = '';
+    preview.classList.add('hidden');
+    icon.classList.remove('hidden');
+    tipoTexto.classList.remove('hidden');
+    btnEliminar.classList.add('hidden');
+  }
+</script>
+
+
+</body>
+</html>

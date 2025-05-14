@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="img/Logo.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="dist/output.css">
+  
+
+  
+  <!-- Cargar fuentes correctamente -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <title>Inicio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @layer utilities {
+  .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+}
+
+        @keyframes shrinkLogo {
+    0% {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0%;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    10% { 
+        width: 180vw;
+        height: 180vw; /* Asegurar proporción cuadrada */
+        border-radius: 0%;
+    }
+    25% {
+        width: 100vw;
+        height: 100vw;
+        border-radius: 50%;
+    }
+    50% {
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+    }
+    80% {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+    }
+    100% {
+        width: 0;
+        height: 0;
+        opacity: -1;
+        border-radius: 100%;
+        transform: translate(-50%, -250%) scale(0);
+    }
+}
+
+.logo-container {
+    background-image: url('img/Logo.png'); 
+    background-size: cover; /* Cambiado a cover */
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.animate-logo {
+    animation: shrinkLogo 4s ease-in-out forwards;
+}
+    </style>
+</head>
+<body>
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover -z-10">
+        <source src="video/videoFondo.mp4" type="video/mp4">
+        
+    </video>
+    
+    <div id="logo-container" class="logo-container bg-white"></div>
+
+    <script>
+        window.onload = function() {
+            document.getElementById("logo-container").classList.add("animate-logo");
+
+            setTimeout(() => {
+                document.getElementById("logo-container").style.display = "none";
+            }, 2500);
+        };
+    </script>
+
+    <!--
+  This example requires updating your template:
+
+  ```
+  <html class="h-full bg-white">
+  <body class="h-full">
+  ```
+-->
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-14">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm ">
+      <img class="mx-auto h-40 md:h-60 lg:h-80" src="img/LogoIncioSesion.png" alt="Your Company">
+      <h2 class="text-2xl font-bold mb-4 text-center" style="font-family: 'Bebas Neue', sans-serif;">Inicia sesión en tu cuenta</h2>
+
+    </div>
+  
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6" id="loginForm">
+        <div>
+          <label for="email" class="block text-sm/6 font-medium text-gray-900">Correo</label>
+          <div class="mt-2">
+            <input type="email" name="email" id="email" autocomplete="email" required class="border-2 border-yellow-600 block w-full
+             rounded-md bg-white px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 
+             outline-black placeholder:text-black focus:outline-2 focus:-outline-offset-2 
+             focus:outline-fuchsia-600 sm:text-sm/6">
+          </div>
+        </div>
+  
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="password" class="block text-sm/6 font-medium text-gray-900">Contraseña</label>
+            <div class="text-sm">
+                <a href="RecuperarContraseña.html" class="font-semibold text-fuchsia-700 hover:text-yellow-600">
+                    ¿Olvidó la contraseña?
+                  </a>
+                  
+            </div>
+          </div>
+          <div class="mt-2">
+            <input type="password" name="password" id="password" autocomplete="current-password" 
+            required class="border-2 border-yellow-600 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1
+             -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-fuchsia-600 sm:text-sm/6">
+          </div>
+        </div>
+  
+        <div>
+          <button type="submit" class="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm/6 
+      font-semibold text-white shadow-xs hover:bg-fuchsia-800 focus-visible:outline-2
+      focus-visible:outline-offset-2 focus-visible:outline-black">Ingresar</button>
+        </div>
+      </form>
+      <!--Simular validacion ya que no tenemos la base de datos conectada-->
+      <script>
+  document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // evita el POST
+    window.location.href = "principal.html"; // redirección manual
+  });
+</script>
+<!--din de la simulacion de validacion-->
+  
+      <p class="mt-10 text-center text-sm/6 text-gray-500">
+        ¿No tienes una cuenta?
+        <a href="Registro.html" class="font-semibold text-fuchsia-700 hover:text-yellow-600">Registrate</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro de Ingresos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Bebas Neue', sans-serif;
+      background-color: #f3f4f6;
+    }
+  </style>
+</head>
+<body class="flex justify-center items-center min-h-screen">
+  <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover -z-10">
+        <source src="video/videoFondo.mp4" type="video/mp4">
+        
+    </video>
+
+
+  <div class="bg-gray-200 p-6 rounded-xl shadow-md max-w-md w-full mx-4">
+    <h2 class="text-2xl text-center font-bold text-gray-800 mb-4">Registro de Ingresos</h2>
+
+    <!-- Tipo de crédito -->
+    <label class="block text-sm font-semibold mb-1">Elige tu tipo de crédito</label>
+    <select id="tipoCredito" class="w-full mb-2 p-2 border border-gray-300 rounded-md">
+      <option>Consumo</option>
+      <option>Estudio</option>
+      <option>Automotriz</option>
+      <option>Hipotecario</option>
+      <option>Nomina</option>
+      <option>Emergencia</option>
+      <option>Otro</option>
+    </select>
+    <input id="otroCredito" type="text" placeholder="Si eligió otro tipo de crédito, escríbelo..." class="w-full mb-4 p-2 border border-gray-300 rounded-md hidden" />
+<script>
+  // Obtener los elementos
+  const select = document.getElementById('tipoCredito');
+  const inputOtroCredito = document.getElementById('otroCredito');
+
+  // Agregar evento de cambio al select
+  select.addEventListener('change', function() {
+    // Verificar si la opción seleccionada es "Otro"
+    if (select.value === "Otro") {
+      inputOtroCredito.classList.remove('hidden');  // Mostrar el campo de texto
+    } else {
+      inputOtroCredito.classList.add('hidden');  // Ocultar el campo de texto
+    }
+  });
+</script>
+    <!-- Nombre del crédito -->
+    <label class="block text-sm font-semibold mb-1">Nombra tu crédito</label>
+    <input type="text" placeholder=">" class="w-full mb-4 p-2 border border-gray-300 rounded-md" />
+
+    <!-- Fechas -->
+    <div class="flex gap-2 mb-4">
+      <div class="w-1/2">
+        <label class="block text-sm font-semibold mb-1">Inicio</label>
+        <input type="date" class="w-full p-2 border border-gray-300 rounded-md" />
+      </div>
+      <div class="w-1/2">
+        <label class="block text-sm font-semibold mb-1">Final</label>
+        <input type="date" class="w-full p-2 border border-gray-300 rounded-md" />
+      </div>
+    </div>
+
+    <!-- Fecha de pago -->
+    <label class="block text-sm font-semibold mb-1">Fecha de pago *</label>
+    <input type="date" class="w-full mb-4 p-2 border border-gray-300 rounded-md" />
+
+    <!-- Botones -->
+    <a href="principal.html" class="flex justify-center w-full bg-black text-white py-2 rounded-full mb-3 hover:bg-fuchsia-800 transition">
+      Registrar crédito
+    </a>
+    <button class="w-full bg-fuchsia-700 text-white py-2 rounded-full hover:bg-yellow-600 transition">
+      Registrar y generar recordatorio
+    </button>
+  </div>
+
+</body>
+</html>

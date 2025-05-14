@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="img/Logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="dist/output.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <title>Principal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-4 font-sans">
+	<!-- Botón Cerrar Sesión - Arriba a la derecha -->
+	<div class="w-full flex justify-end p-4">
+	  <a href="/logout" class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">Cerrar sesión</a>
+
+	</div>
+
+  <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover -z-10">
+        <source src="video/videoFondo.mp4" type="video/mp4">
+        
+    </video>
+
+  <!-- Sesión -->
+  <div class="w-fit text-sm text-gray-600 mb-4 bg-white shadow-md rounded-xl px-3 py-1" style="font-family: 'Bebas Neue', sans-serif;">
+  <p>Sesión iniciada: <strong>dannis1602@*****.com</strong></p>
+</div>
+
+
+  <!-- Bienvenida -->
+  <div class="bg-amber-300 p-4 rounded-xl shadow-md mb-4 text-center bg-gray-100">
+    <h2 class="text-2xl font-bold mb-2" style="font-family: 'Bebas Neue', sans-serif;">¡Bienvenida, Danna!</h2>
+    <p class="text-sm text-gray-700" style="font-family: 'Bebas Neue', sans-serif;">Tu salud financiera es estable.</p>
+    <!--barrita de progreso-->
+    <div class="w-full max-w-lg mx-auto mt-10">
+  <!-- Contenedor de la barra -->
+  <div class="relative h-6 rounded-full overflow-hidden shadow-lg flex">
+    <div class="flex-1 bg-red-500"></div>
+    <div class="flex-1 bg-orange-400"></div>
+    <div class="flex-1 bg-yellow-400"></div>
+    <div class="flex-1 bg-green-500"></div>
+
+    <!-- Indicador dinámico -->
+    <div id="indicator" class="absolute -top-10 transition-all duration-700 ease-in-out">
+      <div id="label" class="text-xs font-bold px-2 py-1 rounded-full text-white bg-black shadow" style="font-family: 'Bebas Neue', sans-serif;">
+        Puntaje
+      </div>
+      
+      <div class="w-3 h-3 bg-black rotate-45 mx-auto -mt-1"></div>
+    </div>
+  </div>
+  <!-- Emojis salud financiera -->
+    <div class="flex justify-center gap-24 text-2xl mb-1">
+      <span>😡</span><span>😟</span><span>🙂</span><span>😄</span>
+    </div>
+  
+</div>
+<script>
+  // Valor del puntaje entre 0 y 100
+  let score = 72; // Simula valor desde la base de datos
+
+  // Asignar color y posición según puntaje
+  const indicator = document.getElementById("indicator");
+  const label = document.getElementById("label");
+
+  function actualizarBarra(puntaje) {
+    const contenedor = document.querySelector(".max-w-lg");
+    const anchoContenedor = contenedor.offsetWidth;
+    const posicion = (puntaje / 100) * anchoContenedor;
+
+    // Posicionar el indicador
+    indicator.style.left = `${posicion}px`;
+
+    // Asignar color y texto
+    if (puntaje < 25) {
+      label.textContent = "POOR";
+      label.className = "text-xs font-bold px-2 py-1 rounded-full text-white bg-red-600 shadow";
+    } else if (puntaje < 50) {
+      label.textContent = "FAIR";
+      label.className = "text-xs font-bold px-2 py-1 rounded-full text-white bg-yellow-500 shadow";
+    } else if (puntaje < 75) {
+      label.textContent = "GOOD";
+      label.className = "text-xs font-bold px-2 py-1 rounded-full text-white bg-green-500 shadow";
+    } else {
+      label.textContent = "EXCELLENT";
+      label.className = "text-xs font-bold px-2 py-1 rounded-full text-white bg-emerald-600 shadow";
+    }
+  }
+
+  // Llama la función con valor inicial
+  actualizarBarra(score);
+
+  //Cuando tenga backend listo,hacer una consulta que devuelva el score, y luego llamar:
+  actualizarBarra(scoreDesdeBD);
+</script>
+
+<!--fin barrita de progreso-->
+
+    <div class="text-xs text-green-600 ml-[400px]" style="font-family: 'Bebas Neue', sans-serif;">Pronto estará aquí, ¡Ánimo!</div>
+  </div>
+
+  <!-- Totales -->
+<!-- Contenedor general -->
+<div class="flex flex-wrap justify-between gap-4 p-4 rounded-xl shadow-md mb-4">
+
+  <!-- DIV IZQUIERDO -->
+ <div class="w-full md:w-[48%] bg-gray-200  p-6 rounded-2xl shadow-lg text-gray-800" style="font-family: 'Bebas Neue', sans-serif;">
+  <h2 class="text-2xl font-bold mb-4 text-yellow-700 flex items-center gap-2">💰 Totales</h2>
+
+  <div class="bg-white rounded-xl p-3 shadow-inner mb-3 flex justify-between items-center">
+    <span class="text-lg">💸 Efectivo</span>
+    <div class="flex items-center gap-2">
+      <button class="text-fuchsia-600 hover:text-yellow-600 transition">🖉</button>
+      <span class="font-bold text-base text-black">$260.000</span>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-xl p-3 shadow-inner mb-3 flex justify-between items-center">
+    <span class="text-lg">💳 Tarjetas</span>
+    <div class="flex items-center gap-2">
+      <button class="text-fuchsia-600 hover:text-yellow-600 transition">🖉</button>
+      <span class="font-bold text-base text-black">$1.169.500</span>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-xl p-3 shadow-inner flex justify-between items-center">
+    <span class="text-lg">📱 Apps</span>
+    <div class="flex items-center gap-2">
+      <button class="text-fuchsia-600 hover:text-yellow-600 transition">🖉</button>
+      <span class="font-bold text-base text-black">$69.000</span>
+    </div>
+  </div>
+</div>
+
+
+  <!-- DIV DERECHO -->
+  <div class="w-full md:w-[48%] bg-gray-200 p-6 rounded-2xl shadow-lg text-gray-800" style="font-family: 'Bebas Neue', sans-serif;">
+  <h2 class="text-2xl font-bold mb-3 text-fuchsia-700 flex items-center gap-2">
+    📅 Próximo pago
+  </h2>
+  
+  <div class="bg-white p-4 rounded-xl shadow-inner mb-2">
+    <p class="text-lg">🏠 Crédito casa</p>
+    <p class="text-sm text-gray-500">Fecha límite: <span class="font-semibold text-black">31/10/2024</span></p>
+  </div>
+  
+  <div class="flex items-center gap-2 mt-2">
+    <span class="bg-red-500 text-white text-xs px-3 py-1 rounded-full animate-pulse">URGENTE</span>
+    <span class="text-red-600 font-bold text-sm">¡Realiza el pago cuanto antes!</span>
+  </div>
+</div>
+
+</div>
+    </div>
+  </div>
+
+  
+
+  <!-- Botones acciones -->
+  <div class="flex flex-wrap justify-center gap-4">
+    <a href="registroIngresos.html" class="bg-purple-700 text-white py-2 px-4 rounded-full shadow inline-block text-center">Nuevo Ingreso</a>
+    <button class="bg-purple-800 text-white py-2 px-4 rounded-full shadow">Nuevo gasto</button>
+    <a href="Reportes.html" class="bg-purple-700 text-white py-2 px-4 rounded-full shadow inline-block text-center">Reportes</a>
+    <a href="presupuesto.html" class="bg-purple-700 text-white py-2 px-4 rounded-full shadow inline-block text-center">Presupuesto</a>
+    <div class="relative inline-block text-left">
+  <!-- Botón principal -->
+  <button onclick="document.getElementById('menuOpciones').classList.toggle('hidden')"
+          class="bg-purple-600 text-white py-2 px-4 rounded-full shadow">
+    Más
+  </button>
+
+  <!-- Menú desplegable oculto por defecto -->
+  <div id="menuOpciones" class="absolute mt-2 right-0 bottom-full bg-white rounded-md shadow-lg w-40 hidden z-20 
+       md:w-48 lg:w-56">
+    <a href="registroCredito.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100">Registrar crédito</a>
+    <a href="pagina2.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100">Opción 2</a>
+    <a href="pagina3.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100">Opción 3</a>
+  </div>
+</div>
+
+  </div>
+
+</body>
+</html>

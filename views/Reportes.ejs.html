@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reportes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="img/Logo.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Bebas Neue', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover -z-10">
+    <source src="video/videoFondo.mp4" type="video/mp4">
+  </video>
+
+  <div class="bg-white shadow-xl rounded-3xl w-[900px] p-6 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-16 bg-black text-white flex items-center justify-center text-3xl tracking-widest"
+         style="clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%)">
+      REPORTES
+    </div>
+
+    <div class="mt-20 text-center">
+      <p class="text-sm text-gray-500 mb-4">Aquí podrás generar un reporte según tu necesidad. Genéralo y observa tu gran progreso.</p>
+    </div>
+
+    <!-- Tipo de reporte -->
+    <label class="block text-left mb-2 text-gray-700 text-lg">Elige el tipo de reporte de presupuesto.</label>
+    <select id="tipoReporteAdmin" class="w-full p-2 border rounded mb-4">
+      <option disabled selected>Selecciona una opción</option>
+      <option>Usuarios registrados</option>
+      <option>Reporte de un usuario</option>
+      <option>Eliminar</option>
+    </select>
+    <select id="tipoReporteUser" class="w-full p-2 border rounded mb-4">
+      <option disabled selected>Selecciona una opción</option>
+      <option>Presupusto Proyectado</option>
+      <option>Presupuesto actual</option>
+      <option>Presupuesto actual y proyectado</option>
+    </select>
+
+    <!-- Formato de reporte -->
+    <p class="text-lg text-gray-600 mb-2">¿En qué formato deseas tu reporte? Selecciónalo.</p>
+    <div class="flex items-center gap-3 mb-4">
+      <input type="radio" name="formato" id="pdf" value="pdf" class="accent-red-600">
+      <label for="pdf" class="flex items-center gap-1 text-sm">
+        <img src="https://img.icons8.com/fluency/24/pdf.png" class="w-5 h-5"> PDF
+      </label>
+      <input type="radio" name="formato" id="excel" value="excel" class="accent-green-600 ml-4">
+      <label for="excel" class="flex items-center gap-1 text-sm">
+        <img src="https://img.icons8.com/fluency/24/ms-excel.png" class="w-5 h-5"> EXCEL
+      </label>
+    </div>
+
+    <!-- Confirmación -->
+    <p class="text-lg text-gray-700 mb-4">¿Todo listo? ok, ¡continuemos!</p>
+
+    <!-- Botones -->
+    <button id="btnPreview" disabled class="btn w-[400px] bg-gray-400 text-black font-bold py-2 rounded-full transition duration-300 mb-2">
+      Preview
+    </button>
+    <button id="btnDescargar" disabled class="btn w-[400px] bg-gray-400 text-black font-bold py-2 rounded-full transition duration-300">
+      Descargar reporte
+    </button>
+  </div>
+
+  <!-- Script para habilitar/deshabilitar botones -->
+  <script>
+    const select = document.getElementById('tipoReporte');
+    const formatoRadios = document.getElementsByName('formato');
+    const btnPreview = document.getElementById('btnPreview');
+    const btnDescargar = document.getElementById('btnDescargar');
+
+    function verificarCampos() {
+      const seleccionValida = select.value !== "Selecciona una opción";
+      const formatoSeleccionado = Array.from(formatoRadios).some(r => r.checked);
+
+      const habilitar = seleccionValida && formatoSeleccionado;
+
+      btnPreview.disabled = !habilitar;
+      btnDescargar.disabled = !habilitar;
+
+      btnPreview.classList.toggle('bg-amber-500', habilitar);
+      btnPreview.classList.toggle('bg-gray-400', !habilitar);
+
+      btnDescargar.classList.toggle('bg-amber-500', habilitar);
+      btnDescargar.classList.toggle('bg-gray-400', !habilitar);
+    }
+
+    select.addEventListener('change', verificarCampos);
+    formatoRadios.forEach(r => r.addEventListener('change', verificarCampos));
+  </script>
+</body>
+</html>

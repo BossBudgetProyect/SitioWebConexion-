@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto</title>
+    
+    <link rel="icon" href="img/Logo.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+</head>
+<body class="bg-white flex items-center justify-center min-h-screen">
+  <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover -z-10">
+        <source src="video/videoFondo.mp4" type="video/mp4">
+        
+    </video>
+
+<!--Principal-->
+  <div class="bg-gray-300 p-4 rounded-lg shadow-4x1 w-[1200px] animate-fade-in backdrop-blur-md">
+    <div class="bg-gray-300 p-1 rounded-lg shadow-4x1 w-[1100px] animate-fade-in backdrop-blur-md">
+      <h3 class="text-4xl font-bold mb-4 text-center" style="font-family: 'Bebas Neue', sans-serif;">Presupuesto del 15 de mayo al 31 de mayo</h3>
+    </div>
+    <div class="flex flex-wrap justify-left gap-6">
+      
+
+      <!--Tabla presupuesto-->
+    <div class="bg-gray-400 p-6 rounded-lg shadow-2xl w-full sm:w-[500px] animate-fade-in backdrop-blur-md">
+
+
+    <div class="flex justify-center">
+      <table class="w-full border-collapse mx-auto">
+        <thead>
+          <tr>
+            <th colspan="6" class="border px-4 pr-[100px] text-center text-2xl font-semibold">Presupuestado</th>
+          </tr>
+        </thead>
+        <tbody id="tablaPresupuestoProyectado">
+          <tr>
+            <td class="border px-4 py-2 text-xl font-semibold">Categoria</td>
+            <td class="border px-4 py-2 text-xl font-semibold">Ingresos</td>
+            <td class="border px-4 py-2 text-xl font-semibold">Gastos</td>
+          </tr>
+          <tr>
+            <td id="casa" class="border px-4 py-2">Casa</td>
+            <td id="ingresoCasaPresupuestado" class="border px-4 py-2">0$</td>
+            <td id="gastoCasaPresupuestado" class="border px-4 py-2">0$</td>
+            
+          </tr>
+          <tr>
+            <td id="comida" class="border px-4 py-2">Comida</td>
+            <td id="ingresoComidaPresupuestado" class="border px-4 py-2">0$</td>
+            <td id="gastoComidaPresupuestado" class="border px-4 py-2">0$</td>
+           
+          </tr>
+          <tr>
+            <td id="trabajo" class="border px-4 py-2">Trabajo</td>
+            <td id="ingresoTrabajoPresupuestado" class="border px-4 py-2">0$</td>
+            <td id="gastoTrabajoPresupuestado" class="border px-4 py-2">0$</td>
+            
+          </tr>
+          <tr>
+            <td id="otros" class="border px-4 py-2">Otros</td>
+            <td id="ingresoOtrosPresupuestado" class="border px-4 py-2">0$</td>
+            <td id="gastoOtrosPresupuestado" class="border px-4 py-2">0$</td>
+         
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+<!--Tabla real-->
+    <div class="bg-gray-400 p-6 rounded-lg shadow-2xl w-full sm:w-[600px] animate-fade-in backdrop-blur-md">
+    <div class="flex justify-center">
+      <table class="w-full border-collapse mx-auto">
+        <thead>
+          <tr>
+            <th colspan="6" class="border px-4 pr-[100px] text-center text-2xl font-semibold">Real</th>
+          </tr>
+        </thead>
+        <tbody id="tablaPresupuestoReal">
+          <tr>
+            <td class="border px-4 py-2 text-xl font-semibold">Categoria</td>
+            
+            <td class="border px-4 py-2 text-xl font-semibold">Ingresos</td>
+            <td class="border px-4 py-2 text-xl font-semibold">Gastos</td>
+            <td class="border px-4 py-2 text-xl font-semibold">Balance</td>
+          </tr>
+          <tr>
+            <td id="casa" class="border px-4 py-2">Casa</td>
+            <td id="ingresoCasaPresupuestado" class="border px-4 py-2">0$</td>
+            <td id="gastoCasaReal" class="border px-4 py-2">0$</td>
+            <td id="balanceCasa" class="border px-4 py-2">0$</td>
+          </tr>
+          <tr>
+            <td id="comida" class="border px-4 py-2">Comida</td>
+            <td id="ingresoComidaReal" class="border px-4 py-2">0$</td>
+            <td id="gastoComidaReal" class="border px-4 py-2">0$</td>
+            <td id="balanceComida" class="border px-4 py-2">0$</td>
+          </tr>
+          <tr>
+            <td id="trabajo" class="border px-4 py-2">Trabajo</td>
+            <td id="ingresoTrabajoReal" class="border px-4 py-2">0$</td>
+            <td id="gastoTrabajoReal" class="border px-4 py-2">0$</td>
+            <td id="balanceTrabajo" class="border px-4 py-2">0$</td>
+          </tr>
+          <tr>
+            <td id="otros" class="border px-4 py-2">Otros</td>
+            <td id="ingresoOtrosReal" class="border px-4 py-2">0$</td>
+            <td id="gastoOtrosReal" class="border px-4 py-2">0$</td>
+            <td id="balanceOtros" class="border px-4 py-2">0$</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <!--Tabla registrar movimientos-->
+    <div class="bg-gray-400 p-2 rounded-lg shadow-2xl w-[1100px] animate-fade-in backdrop-blur-md flex justify-center">
+    <div class="flex flex-wrap justify-between gap-8 mb-6 items-center">
+        <div class="flex flex-col w-1/5">
+            <label for="menu1" class="text-sm font-bold" style="font-family: 'Bebas Neue', sans-serif;">Ingresar a:</label>
+            <select id="menu1" name="menu1" class="px-4 py-2 border rounded-md w-full">
+            <option value="opcion1">Presupuestado</option>
+            <option value="opcion2">Real</option>
+            </select>
+        </div>
+
+        <div class="flex flex-col w-1/5">
+            <label for="menu2" class="text-sm font-bold" style="font-family: 'Bebas Neue', sans-serif;">Categoria:</label>
+            <select id="menu2" name="menu2" class="px-4 py-2 border rounded-md w-full">
+            <option value="opcion1">Casa</option>
+            <option value="opcion2">Comida</option>
+            <option value="opcion3">Trabajo</option>
+            <option value="opcion4">Otros</option>
+            </select>
+        </div>
+
+        <div class="flex flex-col w-1/5">
+            <label for="menu3" class="text-sm font-bold" style="font-family: 'Bebas Neue', sans-serif;">Tipo:</label>
+            <select id="menu3" name="menu3" class="px-4 py-2 border rounded-md w-full">
+            <option value="opcion1">Ingreso</option>
+            <option value="opcion2">Gasto</option>
+            </select>
+        </div>
+
+        <div class="flex flex-col w-1/5">
+            <label for="monto" class="text-sm font-bold" style="font-family: 'Bebas Neue', sans-serif;">Monto:</label>
+            <input type="text" id="monto" name="monto" class="px-6 py-2 border rounded-md w-full" placeholder="Escribe">
+        </div>
+    </div>    
+
+    <div class="flex items-center gap-x-6 justify-end">
+        <a href="index.html" class="gap-x-6 font-semibold text-gray-900" style="font-family: 'Bebas Neue', sans-serif;">Volver</a>
+        <button class="px-6 py-2 bg-fuchsia-700 text-lg font-semibold rounded-md hover:bg-yellow-600 text-gray-900" style="font-family: 'Bebas Neue', sans-serif;">Registrar movimiento</button>
+    </div>
+    </div>
+  </div>
+  </div>
+
+  <script src="js/presupuesto.js"></script>
+</body>
+</html>
