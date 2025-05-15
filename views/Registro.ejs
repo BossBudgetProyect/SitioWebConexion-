@@ -11,9 +11,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen bg-[url('img/FondoRegistro.png')] bg-cover bg-center pt-16">
+<body class="flex items-center justify-center ">
+	<video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover -z-10">
+        <source src="video/videoFondo.mp4" type="video/mp4">
+        
+    </video>
 
-<form action="/registrar" method="post" enctype="multipart/form-data" class="bg-purple-100/80 backdrop-blur-lg p-10 rounded-3xl shadow-lg w-full max-w-5xl mx-4 border border-fuchsia-800 mt-2 mb-16">
+<form action="/registrar" method="post" enctype="multipart/form-data" class="bg-purple-100/80 backdrop-blur-lg p-[10px] rounded-3xl shadow-lg w-full max-w-5xl mx-4 border border-fuchsia-800 mt-2 mb-16">
   <h2 class="text-5xl font-bold mb-4 text-center font-bebas text-fuchsia-700">Registro</h2>
   <p class="text-base font-semibold text-center font-bebas text-gray-700">Aquí podrás registrarte y personalizar tu perfil</p>
   <p class="text-sm text-center font-bebas text-gray-600">Esta información se mostrará públicamente, así que ten cuidado con lo que compartes.</p>
