@@ -17,7 +17,7 @@
         
     </video>
 
-<form action="/registrar" method="post" enctype="multipart/form-data" class="bg-purple-100/80 backdrop-blur-lg p-[10px] rounded-3xl shadow-lg w-full max-w-5xl mx-4 border border-fuchsia-800 mt-2 mb-16">
+<form action="/registrar" method="POST" class="bg-purple-100/80 backdrop-blur-lg p-[10px] rounded-3xl shadow-lg w-full max-w-5xl mx-4 border border-fuchsia-800 mt-2 mb-16">
   <h2 class="text-5xl font-bold mb-4 text-center font-bebas text-fuchsia-700">Registro</h2>
   <p class="text-base font-semibold text-center font-bebas text-gray-700">Aquí podrás registrarte y personalizar tu perfil</p>
   <p class="text-sm text-center font-bebas text-gray-600">Esta información se mostrará públicamente, así que ten cuidado con lo que compartes.</p>
@@ -52,7 +52,7 @@
 
       <div>
         <label for="pass" class="block font-bold font-bebas mb-1">Contraseña</label>
-        <input type="password" name="pass" id="pass" placeholder="********" required
+        <input type="password" name="pass" id="pass" placeholder="********" minlength="6" title="La contraseña debe tener al menos 6 caracteres para mayor seguridad." required
           class="w-full px-4 py-2 rounded-md border border-yellow-600 bg-white text-gray-900 max-w-md">
       </div>
     </div>
@@ -105,7 +105,7 @@
 	  <div class="flex flex-col md:flex-row gap-4">
 		<!-- Básico -->
 		<label class="group relative flex-1 cursor-pointer">
-		  <input type="radio" name="notificaciones" value="basico" class="peer hidden">
+		  <input type="radio" name="notificaciones" value="basico" class="peer hidden" required>
 		  <div class="border-2 rounded-xl p-4 text-center transition-all duration-300 bg-white border-green-300 
 					  peer-checked:bg-green-50 peer-checked:shadow-lg peer-checked:border-green-500 hover:scale-[1.02] hover:shadow-md">
 			<div class="text-lg font-bebas text-green-600 flex justify-center items-center gap-2 before:content-[''] before:w-3 before:h-3 before:rounded-full before:bg-green-600">
@@ -150,7 +150,7 @@
 
 
   <div class="flex justify-end gap-4 mt-10">
-    <a href="index.html" class="text-lg font-semibold font-bebas px-5 py-2 border border-gray-400 rounded-lg text-gray-700 hover:text-white hover:bg-red-500 transition-all duration-300">Cancelar</a>
+    <a href="/login" class="text-lg font-semibold font-bebas px-5 py-2 border border-gray-400 rounded-lg text-gray-700 hover:text-white hover:bg-red-500 transition-all duration-300">Cancelar</a>
     <button type="submit" class="bg-fuchsia-700 hover:bg-yellow-600 text-white hover:text-black px-6 py-2 rounded-lg font-bebas text-lg transition-all duration-300 shadow-md">Guardar</button>
   </div>
 </form>
