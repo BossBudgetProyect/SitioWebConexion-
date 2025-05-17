@@ -181,11 +181,43 @@ function isAuthenticated(req, res, next) {
 // Rutas protegidas (requieren autenticación)
 // Página principal - aplicar el middleware de autenticación
 app.get('/principal', isAuthenticated, (req, res) => {
-    const alertData = req.session.alertData || {};
-    req.session.alertData = null;
-    res.render('principal', alertData);
+  const alertData = req.session.alertData || {};
+  req.session.alertData = null;
+  res.render('principal', {
+    ...alertData,
+    name: req.session.name, // Extracción de datos de base de datos
+    email: req.session.email, // 👈 AGREGAR ESTA LÍNEA
+    rol: req.session.rol
+  });
 });
 
+// Página principal - aplicar el middleware de autenticación
+app.get('/registroIngresos', isAuthenticated, (req, res) => {
+    const alertData = req.session.alertData || {};
+    req.session.alertData = null;
+    res.render('registroIngresos', alertData);
+});
+
+// Página principal - aplicar el middleware de autenticación
+app.get('/Reportes', isAuthenticated, (req, res) => {
+    const alertData = req.session.alertData || {};
+    req.session.alertData = null;
+    res.render('Reportes', alertData);
+});
+
+// Página principal - aplicar el middleware de autenticación
+app.get('/presupuesto', isAuthenticated, (req, res) => {
+    const alertData = req.session.alertData || {};
+    req.session.alertData = null;
+    res.render('presupuesto', alertData);
+});
+
+// Página principal - aplicar el middleware de autenticación
+app.get('/registroCredito', isAuthenticated, (req, res) => {
+    const alertData = req.session.alertData || {};
+    req.session.alertData = null;
+    res.render('registroCredito', alertData);
+});
 
 // Ruta para cerrar la sesión, es necesario un botón que dirija a está ruta
 app.get('/logout', (req, res) => {
