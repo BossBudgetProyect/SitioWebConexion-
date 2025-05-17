@@ -25,13 +25,13 @@
 
   <!-- Sesión -->
   <div class="w-fit text-sm text-gray-600 mb-4 bg-white shadow-md rounded-xl px-3 py-1" style="font-family: 'Bebas Neue', sans-serif;">
-  <p>Sesión iniciada: <strong>dannis1602@*****.com</strong></p>
+  <p>Sesión iniciada: <strong><%= email %></strong></p>
 </div>
 
 
   <!-- Bienvenida -->
   <div class="bg-amber-300 p-4 rounded-xl shadow-md mb-4 text-center bg-gray-100">
-    <h2 class="text-2xl font-bold mb-2" style="font-family: 'Bebas Neue', sans-serif;">¡Bienvenida, Danna!</h2>
+    <h2 class="text-2xl font-bold mb-2" style="font-family: 'Bebas Neue', sans-serif;">¡Bienvenid<%= name.endsWith('a') ? 'a' : 'o' %>, <%= name %>!</h2>
     <p class="text-sm text-gray-700" style="font-family: 'Bebas Neue', sans-serif;">Tu salud financiera es estable.</p>
     <!--barrita de progreso-->
     <div class="w-full max-w-lg mx-auto mt-10">
@@ -160,10 +160,10 @@
 
   <!-- Botones acciones -->
   <div class="flex flex-wrap justify-center gap-4">
-    <a href="registroIngresos.html" class="bg-purple-700 text-white py-2 px-4 rounded-full shadow inline-block text-center">Nuevo Ingreso</a>
+    <a href="/registroIngresos" class="bg-purple-700 text-white py-2 px-4 rounded-full shadow inline-block text-center">Nuevo Ingreso</a>
     <button class="bg-purple-800 text-white py-2 px-4 rounded-full shadow">Nuevo gasto</button>
-    <a href="Reportes.html" class="bg-purple-700 text-white py-2 px-4 rounded-full shadow inline-block text-center">Reportes</a>
-    <a href="presupuesto.html" class="bg-purple-700 text-white py-2 px-4 rounded-full shadow inline-block text-center">Presupuesto</a>
+    <a href="/Reportes" class="bg-purple-700 text-white py-2 px-4 rounded-full shadow inline-block text-center">Reportes</a>
+    <a href="/presupuesto" class="bg-purple-700 text-white py-2 px-4 rounded-full shadow inline-block text-center">Presupuesto</a>
     <div class="relative inline-block text-left">
   <!-- Botón principal -->
   <button onclick="document.getElementById('menuOpciones').classList.toggle('hidden')"
@@ -174,7 +174,7 @@
   <!-- Menú desplegable oculto por defecto -->
   <div id="menuOpciones" class="absolute mt-2 right-0 bottom-full bg-white rounded-md shadow-lg w-40 hidden z-20 
        md:w-48 lg:w-56">
-    <a href="registroCredito.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100">Registrar crédito</a>
+    <a href="/registroCredito" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100">Registrar crédito</a>
     <a href="pagina2.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100">Opción 2</a>
     <a href="pagina3.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100">Opción 3</a>
   </div>
