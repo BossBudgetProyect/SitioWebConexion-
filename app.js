@@ -1,13 +1,26 @@
 // Librerías necesarias para el funcionamiento
 const express = require('express');
-const db = require('./db');
-const bcrypt = require('bcrypt');
-const session = require('express-session');
-
+const db = require('./db'); // Conexión a la base de datos local
+const bcrypt = require('bcrypt'); // Encriptado de contraseñas
+const session = require('express-session'); // Manejo de sesiones
+const multer = require('multer'); // Manejo de imagenes en base de datos
 
 // Instanciamos app y creamos una constante para el puerto por si cambia
 const app = express();
 const port = 3000;
+
+// Configuración de almacenamiento
+const storage = multer.diskStorage({
+    destination: 'public/uploads', // Carpeta de destino (no usamos path por ahora)
+    filename: (req, file, cb) => {
+        // Nombre del archivo: fecha + original
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+
+// Inicializamos multer
+const upload = multer({ storage: storage });
+
 
 // Configurar EJS
 app.set('view engine', 'ejs');
@@ -48,9 +61,10 @@ app.get("/registro", function(req, res) {
 app.use(express.static('public'));
 
 // Registro - método de registro
-app.post('/registrar', async function(req, res) {
-	const datos = req.body;
+app.post('/registrar', upload.single('foto'), async function(req, res) {
 
+	const datos = req.body;
+	
 	let username = datos.username;
 	let nombres = datos.nom;
 	let apellidos = datos.apell;
@@ -59,7 +73,9 @@ app.post('/registrar', async function(req, res) {
 	let profesion = datos.prof;
 	let nacimiento = datos.nacimiento;
 	let expectativas = datos.expec;
-
+	
+	const imagenNombre = req.file ? req.file.filename : null; // Imagen
+	
 	try {
 		// Hashear la contraseña
 		const hashedPassword = await bcrypt.hash(password, 10);
@@ -67,10 +83,10 @@ app.post('/registrar', async function(req, res) {
 		// Consulta segura con placeholders
 		let registrar = `
 			INSERT INTO usuario 
-			(NombreUsuario, Nombres, Apellidos, Contraseña, Correo, Profesion, FechaDeNacimiento, Expectativas) 
-			VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+			(NombreUsuario, Nombres, Apellidos, Contraseña, Correo, Profesion, FechaDeNacimiento, Expectativas, Foto) 
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-		let valores = [username, nombres, apellidos, hashedPassword, email, profesion, nacimiento, expectativas];
+		let valores = [username, nombres, apellidos, hashedPassword, email, profesion, nacimiento, expectativas, imagenNombre];
 
 		db.query(registrar, valores, function(error) {
 			if (error) {
@@ -142,6 +158,7 @@ app.post('/login', async function(req, res) {
 				req.session.email = results[0].Correo;
 				req.session.name = results[0].Nombres;
 				req.session.rol = results[0].Rol;
+				req.session.foto = results[0].Foto;
 
 				req.session.alertData = {
 					alert: true,
@@ -187,7 +204,8 @@ app.get('/principal', isAuthenticated, (req, res) => {
     ...alertData,
     name: req.session.name, // Extracción de datos de base de datos
     email: req.session.email, // 👈 AGREGAR ESTA LÍNEA
-    rol: req.session.rol
+    rol: req.session.rol,
+	foto: req.session.foto
   });
 });
 
